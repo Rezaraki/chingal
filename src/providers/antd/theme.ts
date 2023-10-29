@@ -1,3 +1,6 @@
+import { theme } from 'antd';
+
+const { darkAlgorithm, defaultAlgorithm } = theme;
 export const darkTheme = {
   token: {
     colorBgBase: '#020b1f', // --surface--100
@@ -12,7 +15,7 @@ export const darkTheme = {
       stickyScrollBarBg: 'rgb(47, 55, 86)', // --surface--400: #2f3756;
     },
   },
-  algorithm: 'dark',
+  algorithm: darkAlgorithm,
 };
 export const defaultTheme = {
   components: {
@@ -22,4 +25,5 @@ export const defaultTheme = {
       algorithm: true,
     },
   },
+  algorithm: defaultAlgorithm,
 };

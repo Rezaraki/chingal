@@ -1,6 +1,7 @@
 import './assets/styles/styles.scss';
 
 import { AntdProvider, Router } from './providers';
+import { routes } from './providers/router';
 import { useThemeMode } from './services';
 
 function App() {
@@ -8,7 +9,7 @@ function App() {
 
   return (
     <AntdProvider isDarkMode={themeMode === 'dark'}>
-      <Router />
+      <Router routes={routes} />
     </AntdProvider>
   );
 }

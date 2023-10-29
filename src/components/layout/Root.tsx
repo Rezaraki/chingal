@@ -1,16 +1,16 @@
 import { Outlet } from 'react-router-dom';
 import { Layout } from 'antd';
+import Header from './Header';
 
-const { Header, Footer, Content } = Layout;
+const { Content } = Layout;
 
 function Root() {
   return (
     <Layout>
-      <Header>Header</Header>
+      <Header />
       <Content>
         <Outlet />
       </Content>
-      <Footer>Footer</Footer>
     </Layout>
   );
 }

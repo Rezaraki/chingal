@@ -1,6 +1,7 @@
+import { RouteObject } from 'react-router-dom';
 import Root from '../../components/layout/Root';
 
-const routes = [
+const routes: RouteObject[] = [
   {
     path: '/',
     element: <Root />,
