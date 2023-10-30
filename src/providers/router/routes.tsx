@@ -1,5 +1,6 @@
 import { RouteObject } from 'react-router-dom';
 import Root from '../../components/layout/Root';
+import Users from '../../components/Users';
 
 const routes: RouteObject[] = [
   {
@@ -8,13 +9,13 @@ const routes: RouteObject[] = [
     children: [
       {
         path: '/users',
-        element: (
-          <div className="App">
-            <div className="card">
-              <button type="button">count is</button>
-            </div>
-          </div>
-        ),
+        element: <Users />,
+        children: [
+          {
+            path: '/users/:id',
+            element: <>hi</>,
+          },
+        ],
       },
     ],
   },

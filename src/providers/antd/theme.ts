@@ -11,11 +11,11 @@ export const darkTheme = {
   },
   components: {
     Table: {
-      headerColor: 'rgb(126, 132, 142)', // --surface--500: #7e848e;
+      headerColor: '#7e848e', // --surface--500
       headerBorderRadius: 16,
       paddingXS: 6,
       algorithm: true,
-      stickyScrollBarBg: 'rgb(47, 55, 86)', // --surface--400: #2f3756;
+      stickyScrollBarBg: '#2f3756', // --surface--400
     },
     Segmented: {
       controlHeight: 56,
@@ -26,6 +26,10 @@ export const darkTheme = {
     },
     input: {
       controlHeightLG: 48,
+    },
+    Breadcrumb: {
+      itemColor: '#7E848E', // --surface-500
+      lastItemColor: '#FBFDFE', // --surface-900
     },
   },
   algorithm: darkAlgorithm,

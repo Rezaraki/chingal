@@ -1,0 +1,10 @@
+.breadcrumb {
+  display: flex;
+  gap: 8px;
+  .ant-breadcrumb .ant-breadcrumb-separator svg {
+    //TODO: configure svgr for color to work
+    // color: var(--surface-900);
+    filter: brightness(0) saturate(100%) invert(100%) sepia(6%) saturate(1146%) hue-rotate(174deg) brightness(95%)
+      contrast(111%);
+  }
+}
