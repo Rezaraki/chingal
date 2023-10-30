@@ -11,7 +11,17 @@
   }
   &__search {
     width: 512px;
+    height: 56px;
+    background: linear-gradient(201deg, #020b1f 0%, #0c132c 82.07%);
+    input {
+      background: transparent;
+    }
   }
+  .ant-segmented {
+    border: 1px solid var(--surface--300);
+    background: linear-gradient(205deg, #020b1f 0%, #0c132c 84.34%);
+  }
+
   .ant-segmented-item-icon {
     vertical-align: sub;
   }
