@@ -6,7 +6,7 @@ const { Content } = Layout;
 
 function Root() {
   return (
-    <Layout>
+    <Layout className="layout-root">
       <Header />
       <Content>
         <Outlet />

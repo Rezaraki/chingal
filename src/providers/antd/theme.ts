@@ -14,6 +14,12 @@ export const darkTheme = {
       algorithm: true,
       stickyScrollBarBg: 'rgb(47, 55, 86)', // --surface--400: #2f3756;
     },
+    Segmented: {
+      controlHeight: 56,
+      borderRadius: 16,
+      borderRadiusSM: 16,
+      lineWidthBold: 6,
+    },
   },
   algorithm: darkAlgorithm,
 };
@@ -23,6 +29,12 @@ export const defaultTheme = {
       headerBorderRadius: 16,
       paddingXS: 6,
       algorithm: true,
+    },
+    Segmented: {
+      controlHeight: 56,
+      borderRadius: 16,
+      borderRadiusSM: 16,
+      lineWidthBold: 6,
     },
   },
   algorithm: defaultAlgorithm,

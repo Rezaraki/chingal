@@ -1,2 +1,18 @@
-header {
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 24px 48px;
+  &__left-container {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  &__search {
+    width: 512px;
+  }
+  .ant-segmented-item-icon {
+    vertical-align: sub;
+  }
 }
