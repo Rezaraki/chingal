@@ -10,7 +10,7 @@ function BreadCrumb() {
     Partial<BreadcrumbItemType & BreadcrumbSeparatorType>[] | undefined
   >();
 
-  function url_to_list(url: string): { title: string; href?: string }[] {
+  function breadcrumbItemMaker(url: string): { title: string; href?: string }[] {
     if (url.split('/').filter(Boolean).length >= 2) {
       return [{ title: 'لیست کاربران', href: '/users' }, { title: 'ویرایش کاربر' }];
     }
@@ -19,7 +19,7 @@ function BreadCrumb() {
   }
 
   useEffect(() => {
-    const newBreadCrumbItems = url_to_list(pathname);
+    const newBreadCrumbItems = breadcrumbItemMaker(pathname);
 
     setBreadCrumbItems(newBreadCrumbItems);
   }, [pathname]);
