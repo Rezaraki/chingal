@@ -1,6 +1,6 @@
 import { RouteObject } from 'react-router-dom';
-import Root from '../../components/layout/Root';
-import Users from '../../components/Users';
+import { Root } from '../../components/layout';
+import { Profile, Users } from '../../components';
 
 const routes: RouteObject[] = [
   {
@@ -13,7 +13,7 @@ const routes: RouteObject[] = [
       },
       {
         path: '/users/:id',
-        element: <>Profile</>,
+        element: <Profile />,
       },
     ],
   },

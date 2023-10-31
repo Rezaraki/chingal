@@ -1,9 +1,12 @@
 .layout-root {
   height: 100svh;
   main {
-    height: 87svh;
     padding: 48px;
     padding-top: 0;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    overflow-y: auto;
   }
   header {
     height: 148px;

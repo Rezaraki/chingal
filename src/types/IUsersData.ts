@@ -5,4 +5,5 @@ export interface IUsersData {
   email: string;
   city: string;
   company: string;
+  id: string;
 }

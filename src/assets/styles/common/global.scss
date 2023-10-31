@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--surface--400);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--surface--300);
+  border-radius: 4px;
+}

@@ -1,0 +1,46 @@
+.profile {
+  width: 540px;
+  padding: 40px;
+  padding-bottom: 20px;
+  box-shadow: 24px 24px 96px 0px #0c132c;
+  .ant-card-body {
+    padding: 0;
+  }
+  h2 {
+    font-size: 1.5rem;
+    margin-top: 0;
+  }
+  hr {
+    border: none;
+    border-top: 2px solid var(--surface--300);
+    margin-top: 16px;
+  }
+  .img-container {
+    display: flex;
+    justify-content: center;
+    margin-block: 24px;
+  }
+  img {
+    border-radius: 50%;
+    height: 112px;
+    width: 112px;
+    object-fit: contain;
+  }
+
+  input {
+    border-radius: 12px;
+    border-color: var(---surface--400);
+    color: var(---surface--900);
+  }
+  .ant-form-item-label {
+    padding-bottom: 12px;
+  }
+  .btn-container {
+    display: flex;
+    padding-inline: 6px;
+    gap: 24px;
+    button {
+      height: 56px;
+    }
+  }
+}

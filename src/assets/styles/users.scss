@@ -1,0 +1,26 @@
+.users {
+  width: 100%;
+  .ant-table-thead .ant-table-cell {
+    padding-block: 6px;
+  }
+  th.ant-table-cell.ant-table-column-sort {
+    background-color: var(--primary--400);
+  }
+  .ant-table-tbody .ant-table-row {
+    .ant-table-cell {
+      background-color: var(--surface--200);
+    }
+    &:nth-child(odd) .ant-table-cell {
+      background-color: var(--surface--100);
+    }
+    //TODO: makebottom corners of the table round
+    // &:last-of-type {
+    //   &.ant-table-cell:last-of-type {
+    //     border-radius: 16px;
+    //   }
+    //   &.ant-table-cell:first-of-type {
+    //     border-radius: 16px;
+    //   }
+    // }
+  }
+}

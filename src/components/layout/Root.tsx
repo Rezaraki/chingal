@@ -2,7 +2,7 @@ import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { Layout } from 'antd';
 import { useEffect } from 'react';
 import Header from './Header';
-import BreadCrumb from '../BreadCrumb';
+import BreadCrumb from './BreadCrumb';
 
 const { Content } = Layout;
 
