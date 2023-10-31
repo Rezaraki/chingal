@@ -8,12 +8,14 @@ import { utf8Sorter } from '../services/utils';
 import pickNeededPropertiesforUsersTable from '../services/utils/pickNeededPropertiesforUsersTable';
 import { Context } from '../providers/context/ContextProvider';
 import { IUsersData } from '../types';
+import { Loading } from './common';
 
 const columns: ColumnsType<IUsersData> = [
   {
     title: 'نام کاربر',
     dataIndex: 'name',
     key: 'name',
+    // TODO: change sort icon
     render: (name: string, record, index) => <Link to={'/users/' + record.id}>{name}</Link>,
     sorter: (a, b) => utf8Sorter(a.name, b.name),
   },
@@ -73,7 +75,9 @@ function Users() {
     [users, searchValue],
   );
 
-  return (
+  return isLoading ? (
+    <Loading />
+  ) : (
     <Table
       className="users"
       scroll={{ y: 780 }}

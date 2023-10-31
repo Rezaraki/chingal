@@ -16,3 +16,8 @@ export async function editUserProfile(userData: IProfileData) {
 
   return result.data;
 }
+export async function delUser(userId: number | string) {
+  const result = await configuredAxios.delete(`/users/${userId}`);
+
+  return result.data;
+}

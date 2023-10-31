@@ -3,6 +3,9 @@
   padding: 40px;
   padding-bottom: 20px;
   box-shadow: 24px 24px 96px 0px #0c132c;
+  &.not-found {
+    text-align: center;
+  }
   .ant-card-body {
     padding: 0;
   }
