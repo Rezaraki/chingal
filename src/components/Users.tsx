@@ -1,9 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { getUsers } from '../services';
-import { Space, Table, Tag } from 'antd';
+import { Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { Link } from 'react-router-dom';
 import { utf8Sorter } from '../services/utils';
+import pickNeededPropertiesforUsersTable from '../services/utils/pickNeededProperties';
+import { useContext, useMemo } from 'react';
+import { Context } from '../providers/context/ContextProvider';
+import { IUsersData } from '../types';
 const y = [
   {
     createdAt: '2023-07-09T08:21:39.305Z',
@@ -74,25 +78,8 @@ const y = [
     username: 'amirhossei',
   },
 ];
-interface DataType {
-  createdAt: string;
-  name: string;
-  avatar: string;
-  dateOfBirth: string;
-  country: string;
-  city: string;
-  street: string;
-  zipcode: string;
-  company: string;
-  email: string;
-  phoneNumber: string;
-  id: string;
-  userName: string;
-  age: string;
-  username: string;
-}
 
-const columns: ColumnsType<DataType> = [
+const columns: ColumnsType<IUsersData> = [
   {
     title: 'نام کاربر',
     dataIndex: 'name',
@@ -129,8 +116,33 @@ const columns: ColumnsType<DataType> = [
 ];
 
 function Users() {
-  const { data: users, isLoading, error } = useQuery({ queryKey: ['users'], queryFn: getUsers });
+  const {
+    data: users,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ['users'],
+    queryFn: getUsers,
+    select: pickNeededPropertiesforUsersTable,
+  });
+  const store = useContext(Context);
+  const {
+    state: { searchValue },
+  } = store!;
 
-  return <Table pagination={false} columns={columns} dataSource={y} />;
+  const filteredUsers = useMemo(
+    () =>
+      users?.filter((person) => {
+        if (!searchValue) return users;
+
+        const values = Object.values(person).map((value) => value.toLowerCase());
+
+        return values.some((value) => value.includes(searchValue.toLowerCase()));
+      }),
+
+    [users, searchValue],
+  );
+
+  return <Table pagination={false} loading={isLoading} columns={columns} dataSource={filteredUsers} />;
 }
 export default Users;

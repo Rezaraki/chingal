@@ -15,9 +15,6 @@ function Header() {
   function handelSearch(e: ChangeEvent<HTMLInputElement>) {
     dispatch && dispatch({ type: ACTION_TYPES.SET_SEARCH_VALUE, payload: e.target.value });
   }
-  function handelSearch() {
-    dispatch && dispatch({ type: ACTION_TYPES.EXCUTE_SEARCH, payload: '' });
-  }
 
   return (
     <header className="header">
@@ -27,10 +24,9 @@ function Header() {
           size="large"
           value={searchValue}
           onChange={handelSearch}
-          onPressEnter={}
           className="header__search"
           placeholder="جستجو"
-          prefix={<Search onClick={handelSearch} />}
+          prefix={<Search />}
         />
         <Segmented
           value="dark"
