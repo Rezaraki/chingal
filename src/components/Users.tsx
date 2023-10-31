@@ -5,7 +5,7 @@ import type { ColumnsType } from 'antd/es/table';
 import { useQuery } from '@tanstack/react-query';
 import { getUsers } from '../services';
 import { utf8Sorter } from '../services/utils';
-import pickNeededPropertiesforUsersTable from '../services/utils/pickNeededProperties';
+import pickNeededPropertiesforUsersTable from '../services/utils/pickNeededPropertiesforUsersTable';
 import { Context } from '../providers/context/ContextProvider';
 import { IUsersData } from '../types';
 

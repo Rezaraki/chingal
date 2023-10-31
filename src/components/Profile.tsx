@@ -1,20 +1,73 @@
-import { Avatar, Card, Typography, Form, Input, Button, Row, Col } from 'antd';
+import { Card, Typography, Form, Input, Button, Row, Col } from 'antd';
 import { useForm } from 'antd/lib/form/Form';
+import { editUserProfile, getUserProfile } from '../services';
+import { useParams } from 'react-router-dom';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { omitProperties, pickProperties } from '../services/utils';
+import { IProfileData, IProfileFormData, IRawUserData } from '../types';
+import avatar from '@/Assets/imgs/avatar.jpg';
 
 const { Title } = Typography;
+const NEEDED_RROPERTIES = [
+  'name',
+  'avatar',
+  'country',
+  'city',
+  'street',
+  'zipcode',
+  'company',
+  'email',
+  'phoneNumber',
+  'id',
+  'age',
+];
+
 function Profile() {
   const [form] = useForm();
+  const queryClient = useQueryClient();
 
-  const onFinish = (values: any) => {
+  const { id } = useParams();
+  const {
+    data: profileData,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ['user'],
+    queryFn: () => getUserProfile(id ?? ''),
+    enabled: !!id,
+    // @ts-expect-error silly ts mistake!
+    select: (data: IRawUserData): IProfileData => pickProperties(data, NEEDED_RROPERTIES),
+  });
+  // @ts-expect-error silly ts mistake!
+  const oldFormData = profileData && omitProperties(profileData, ['avatar', 'id']);
+
+  oldFormData && form.setFieldsValue(oldFormData);
+
+  const { mutateAsync } = useMutation({
+    mutationFn: editUserProfile,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['user'] });
+    },
+  });
+
+  const onFinish = (values: IProfileFormData) => {
     console.log('Received values of form: ', values);
   };
+  // useEffect(() => {
+
+  // }, []);
+  // pickProperties()
+  // console.log('formData', formData);
+  // console.log('profileData', profileData);
+
+  // console.log('params', id);
 
   return (
     <Card className="profile">
       <Title level={2}>ویرایش کاربر</Title>
       <hr />
       <div className="img-container">
-        <img src="" alt="" />
+        <img src={profileData?.avatar || avatar} alt="" />
       </div>
 
       <Form form={form} onFinish={onFinish} layout="vertical">
@@ -87,7 +140,7 @@ function Profile() {
           <Button size="large" block type="primary" htmlType="submit">
             ویرایش
           </Button>
-          <Button size="large" block type="primary" danger htmlType="submit">
+          <Button size="large" block type="primary" danger>
             حذف
           </Button>
         </div>
