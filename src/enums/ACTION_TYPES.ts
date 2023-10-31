@@ -1,0 +1,5 @@
+const ACTION_TYPES = {
+  SET_SEARCH_VALUE: 'SET_SEARCH_VALUE',
+  EXCUTE_SEARCH: 'EXCUTE_SEARCH',
+} as const;
+export default ACTION_TYPES;

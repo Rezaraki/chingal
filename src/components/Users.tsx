@@ -3,7 +3,7 @@ import { getUsers } from '../services';
 import { Space, Table, Tag } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { Link } from 'react-router-dom';
-import { utf8Sorter } from '../utils';
+import { utf8Sorter } from '../services/utils';
 const y = [
   {
     createdAt: '2023-07-09T08:21:39.305Z',
@@ -128,33 +128,9 @@ const columns: ColumnsType<DataType> = [
   },
 ];
 
-const data: DataType[] = [
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: ['loser'],
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sydney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
-];
-
 function Users() {
   const { data: users, isLoading, error } = useQuery({ queryKey: ['users'], queryFn: getUsers });
-  console.log('data', data);
+
   return <Table pagination={false} columns={columns} dataSource={y} />;
 }
 export default Users;
