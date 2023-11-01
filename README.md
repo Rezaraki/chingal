@@ -19,7 +19,7 @@ yarn
 yarn dev
 ```
 
-The project will run at [http://localhost:5173](http://localhost:5173).
+The project will run at  (http://localhost:5173).
 
 ## live demo 
 you could find an online version in https://chingal-challenge.netlify.app
