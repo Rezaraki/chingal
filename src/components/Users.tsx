@@ -1,53 +1,66 @@
-import { useContext, useMemo } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { useQuery } from '@tanstack/react-query';
-import { getUsers } from '../services';
+import { getSortOrderFromLocal, getUsers, pickNeededProperties, setSortOrdertoLocal } from '../services';
 import { utf8Sorter } from '../services/utils';
-import pickNeededPropertiesforUsersTable from '../services/utils/pickNeededPropertiesforUsersTable';
 import { Context } from '../providers/context/ContextProvider';
 import { IUsersData } from '../types';
 import { Loading } from './common';
-
-const columns: ColumnsType<IUsersData> = [
-  {
-    title: 'نام کاربر',
-    dataIndex: 'name',
-    key: 'name',
-    // TODO: change sort icon
-    render: (name: string, record, index) => <Link to={'/users/' + record.id}>{name}</Link>,
-    sorter: (a, b) => utf8Sorter(a.name, b.name),
-  },
-  {
-    title: 'سن',
-    dataIndex: 'age',
-    key: 'age',
-  },
-  {
-    title: 'شماره تلفن',
-    dataIndex: 'phoneNumber',
-    key: 'phoneNumber',
-  },
-  {
-    title: 'ایمیل',
-    dataIndex: 'email',
-    key: 'email',
-  },
-  {
-    title: 'آدرس',
-    dataIndex: 'city',
-    key: 'city',
-  },
-
-  {
-    title: 'شرکت',
-    dataIndex: 'company',
-    key: 'company',
-  },
-];
+import { SortOrder } from 'antd/lib/table/interface';
 
 function Users() {
+  const [sortOrder, setSortOrder] = useState<SortOrder>(null);
+  useEffect(() => {
+    const savedSortOrder = getSortOrderFromLocal();
+    if (savedSortOrder) {
+      setSortOrder(savedSortOrder);
+    }
+  }, []);
+  const handleSortChange = (_, __, sorter: any) => {
+    setSortOrder(sorter.order);
+    setSortOrdertoLocal(sorter.order);
+  };
+
+  const columns: ColumnsType<IUsersData> = [
+    {
+      title: 'نام کاربر',
+      dataIndex: 'name',
+      key: 'name',
+      // TODO: change sort icon
+      render: (name: string, record, index) => <Link to={`/users/${record.id}`}>{name}</Link>,
+      sortOrder,
+      sorter: (a, b) => utf8Sorter(a.name, b.name),
+    },
+    {
+      title: 'سن',
+      dataIndex: 'age',
+      key: 'age',
+    },
+    {
+      title: 'شماره تلفن',
+      dataIndex: 'phoneNumber',
+      key: 'phoneNumber',
+    },
+    {
+      title: 'ایمیل',
+      dataIndex: 'email',
+      key: 'email',
+    },
+    {
+      title: 'آدرس',
+      dataIndex: 'city',
+      key: 'city',
+    },
+
+    {
+      title: 'شرکت',
+      dataIndex: 'company',
+      key: 'company',
+    },
+  ];
+
   const {
     data: users,
     isLoading,
@@ -55,7 +68,7 @@ function Users() {
   } = useQuery({
     queryKey: ['users'],
     queryFn: getUsers,
-    select: pickNeededPropertiesforUsersTable,
+    select: pickNeededProperties,
   });
   const store = useContext(Context);
   const {
@@ -85,6 +98,7 @@ function Users() {
       loading={isLoading}
       columns={columns}
       dataSource={filteredUsers}
+      onChange={handleSortChange}
     />
   );
 }

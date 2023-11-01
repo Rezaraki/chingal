@@ -1,5 +1,5 @@
 import { Input, Segmented } from 'antd';
-import { ChangeEvent, useContext } from 'react';
+import { ChangeEvent, useContext, useEffect } from 'react';
 import chingalLogo from '@/Assets/imgs/chingal-logo.png';
 import Moon from '@/Assets/svgs/Moon.svg?react';
 import Sun from '@/Assets/svgs/Sun.svg?react';
@@ -9,11 +9,17 @@ import { ACTION_TYPES } from '../../enums';
 
 function Header() {
   const store = useContext(Context);
-  const { dispatch, state } = store ?? {};
-  const { searchValue } = state ?? {};
+  const { dispatch, state } = store!;
+  const { searchValue } = state;
 
-  function handelSearch(e: ChangeEvent<HTMLInputElement>) {
-    dispatch && dispatch({ type: ACTION_TYPES.SET_SEARCH_VALUE, payload: e.target.value });
+  useEffect(() => {
+    const savedSearchVal = localStorage.getItem('searchValue');
+    savedSearchVal && dispatch({ type: ACTION_TYPES.SET_SEARCH_VALUE, payload: savedSearchVal });
+  }, []);
+
+  function handleSearch(e: ChangeEvent<HTMLInputElement>) {
+    dispatch({ type: ACTION_TYPES.SET_SEARCH_VALUE, payload: e.target.value });
+    localStorage.setItem('searchValue', e.target.value);
   }
 
   return (
@@ -23,7 +29,7 @@ function Header() {
         <Input
           size="large"
           value={searchValue}
-          onChange={handelSearch}
+          onChange={handleSearch}
           className="header__search"
           placeholder="جستجو"
           prefix={<Search />}
