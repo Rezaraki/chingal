@@ -1,6 +1,15 @@
+@font-face {
+  font-family: 'IRANYekanRegular';
+  src:
+    local('IRANYekanRegular'),
+    url(../../fonts/IRANYekanMobileRegular.ttf) format('woff2');
+}
 * {
   box-sizing: border-box;
+  font-family: 'IRANYekanRegular', 'FreeFarsi', 'Homa', 'Nazli', 'Titr', Arial, Helvetica, sans-serif, Tahoma, Verdana,
+    sans-serif, serif;
 }
+
 body {
   margin: 0;
 }
