@@ -5,12 +5,9 @@ import Moon from '@/Assets/svgs/Moon.svg?react';
 import Sun from '@/Assets/svgs/Sun.svg?react';
 import Search from '@/Assets/svgs/Search.svg?react';
 import { Context } from '../../providers/context/ContextProvider';
-import { ACTION_TYPES } from '../../enums';
-import { useThemeMode } from '../../services';
-import { TTheme } from '../../types';
+import { ACTION_TYPES, THEME_MODES } from '../../enums';
 
 function Header() {
-  const [themeMode, setThemeMode] = useThemeMode();
   const store = useContext(Context);
   const { dispatch, state } = store!;
   const { searchValue } = state;
@@ -23,9 +20,6 @@ function Header() {
   function handleSearch(e: ChangeEvent<HTMLInputElement>) {
     dispatch({ type: ACTION_TYPES.SET_SEARCH_VALUE, payload: e.target.value });
     localStorage.setItem('searchValue', e.target.value);
-  }
-  function handleSwitchChange(newTheme: TTheme) {
-    setThemeMode(newTheme);
   }
 
   return (
@@ -41,8 +35,7 @@ function Header() {
           prefix={<Search />}
         />
         <Segmented
-          value={themeMode ?? undefined}
-          onChange={handleSwitchChange}
+          value={THEME_MODES.DARK}
           options={[
             {
               value: 'light',

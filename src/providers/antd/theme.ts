@@ -17,7 +17,7 @@ export const darkTheme = {
     Table: {
       headerColor: '#7e848e', // --surface--500
       borderColor: '#182040',
-      cellFontSize: '0.75rem',
+      cellFontSize: 12,
       cellPaddingBlock: 30,
       headerBorderRadius: 16,
       paddingXS: 6,

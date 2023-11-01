@@ -18,7 +18,7 @@ function Users() {
       setSortOrder(savedSortOrder);
     }
   }, []);
-  const handleSortChange = (_, __, sorter: any) => {
+  const handleSortChange = (_: unknown, __: unknown, sorter: Record<string, any>) => {
     setSortOrder(sorter.order);
     setSortOrdertoLocal(sorter.order);
   };
