@@ -1,16 +1,7 @@
 import { Form, Input, Button, Row, Col } from 'antd';
-import { FormInstance } from 'antd/lib';
-import { IProfileFormData } from '../types';
+import { IUserFormProps } from '../types';
 
-function UserForm({
-  formInstance,
-  onDelClickHandle,
-  onEditClickHandle,
-}: {
-  formInstance: FormInstance<any>;
-  onDelClickHandle: () => void;
-  onEditClickHandle: (values: IProfileFormData) => void;
-}) {
+function UserForm({ formInstance, onDelClickHandle, onEditClickHandle }: IUserFormProps) {
   return (
     <Form form={formInstance} onFinish={onEditClickHandle} layout="vertical">
       <Row gutter={24}>

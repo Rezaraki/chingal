@@ -6,8 +6,11 @@ import Sun from '@/Assets/svgs/Sun.svg?react';
 import Search from '@/Assets/svgs/Search.svg?react';
 import { Context } from '../../providers/context/ContextProvider';
 import { ACTION_TYPES } from '../../enums';
+import { useThemeMode } from '../../services';
+import { TTheme } from '../../types';
 
 function Header() {
+  const [themeMode, setThemeMode] = useThemeMode();
   const store = useContext(Context);
   const { dispatch, state } = store!;
   const { searchValue } = state;
@@ -20,6 +23,9 @@ function Header() {
   function handleSearch(e: ChangeEvent<HTMLInputElement>) {
     dispatch({ type: ACTION_TYPES.SET_SEARCH_VALUE, payload: e.target.value });
     localStorage.setItem('searchValue', e.target.value);
+  }
+  function handleSwitchChange(newTheme: TTheme) {
+    setThemeMode(newTheme);
   }
 
   return (
@@ -35,7 +41,8 @@ function Header() {
           prefix={<Search />}
         />
         <Segmented
-          value="dark"
+          value={themeMode ?? undefined}
+          onChange={handleSwitchChange}
           options={[
             {
               value: 'light',

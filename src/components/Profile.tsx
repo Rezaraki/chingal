@@ -29,6 +29,7 @@ function Profile() {
   const queryClient = useQueryClient();
   const redirect = useNavigate();
   const { id } = useParams();
+
   const {
     data: profileData,
     isLoading,
@@ -41,6 +42,7 @@ function Profile() {
     // @ts-expect-error silly ts mistake!
     select: (data: IRawUserData): IProfileData => pickProperties(data, NEEDED_RROPERTIES),
   });
+
   // @ts-expect-error silly ts mistake!
   const oldFormData = profileData && omitProperties(profileData, ['avatar', 'id']);
   oldFormData && form.setFieldsValue(oldFormData);

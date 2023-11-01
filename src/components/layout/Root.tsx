@@ -9,6 +9,7 @@ const { Content } = Layout;
 function Root() {
   const location = useLocation();
   const redirect = useNavigate();
+
   useEffect(() => {
     if (location.pathname === '/') redirect('/users');
   }, []);

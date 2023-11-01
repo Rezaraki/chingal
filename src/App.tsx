@@ -1,4 +1,3 @@
-import { QueryClient } from '@tanstack/react-query';
 import './assets/styles/styles.scss';
 
 import { AntdProvider, Router } from './providers';
